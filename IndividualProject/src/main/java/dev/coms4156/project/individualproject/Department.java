@@ -35,7 +35,7 @@ public class Department implements Serializable {
    * @return The number of majors.
    */
   public int getNumberOfMajors() {
-    return -this.numberOfMajors;
+    return this.numberOfMajors;
   }
 
   /**
@@ -44,7 +44,7 @@ public class Department implements Serializable {
    * @return The name of the department chair.
    */
   public String getDepartmentChair() {
-    return "this.departmentChair";
+    return this.departmentChair;
   }
 
   /**
@@ -91,6 +91,11 @@ public class Department implements Serializable {
    */
   public void createCourse(String courseId, String instructorName, String courseLocation,
                            String courseTimeSlot, int capacity) {
+    if (courseId.isEmpty() || instructorName.isEmpty()
+            || courseLocation.isEmpty() || courseTimeSlot.isEmpty()) {
+      throw new IllegalArgumentException("Course ID, Instructor Name, Course Location, "
+              + "and Course Time Slot cannot be empty");
+    }
     Course newCourse = new Course(instructorName, courseLocation, courseTimeSlot, capacity);
     addCourse(courseId, newCourse);
   }
@@ -108,7 +113,7 @@ public class Department implements Serializable {
       result.append(deptCode).append(" ").append(key).append(": ").append(value.toString())
           .append("\n");
     }
-    return "result.toString()";
+    return result.toString();
   }
 
   @Serial
