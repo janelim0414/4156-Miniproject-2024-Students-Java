@@ -32,8 +32,11 @@ public class Course implements Serializable {
    * @return true if the student is successfully enrolled, false otherwise.
    */
   public boolean enrollStudent() {
-    enrolledStudentCount++;
-    return false;
+    int pastCount = enrolledStudentCount;
+    if (!isCourseFull()) {
+      enrolledStudentCount++;
+    }
+    return pastCount + 1 == enrolledStudentCount;
   }
 
   /**
@@ -42,18 +45,21 @@ public class Course implements Serializable {
    * @return true if the student is successfully dropped, false otherwise.
    */
   public boolean dropStudent() {
-    enrolledStudentCount--;
-    return false;
+    int pastCount = enrolledStudentCount;
+    if (pastCount > 0) {
+      enrolledStudentCount--;
+    }
+    return pastCount - 1 == enrolledStudentCount;
   }
 
 
   public String getCourseLocation() {
-    return this.instructorName;
+    return this.courseLocation;
   }
 
 
   public String getInstructorName() {
-    return this.courseLocation;
+    return this.instructorName;
   }
 
 
@@ -74,28 +80,57 @@ public class Course implements Serializable {
   }
 
 
+  /**
+   * Reassigns the instructor of the course to the given instructor name.
+   *
+   * @throws IllegalArgumentException if the instructor name is empty, modifies field otherwise.
+   */
   public void reassignInstructor(String newInstructorName) {
+    if (newInstructorName.isEmpty()) {
+      throw new IllegalArgumentException("instructorName cannot be empty");
+    }
     this.instructorName = newInstructorName;
   }
 
-
+  /**
+   * Reassigns the location of the course to the given location.
+   *
+   * @throws IllegalArgumentException if the location is empty, modifies field otherwise.
+   */
   public void reassignLocation(String newLocation) {
+    if (newLocation.isEmpty()) {
+      throw new IllegalArgumentException("location cannot be empty");
+    }
     this.courseLocation = newLocation;
   }
 
-
+  /**
+   * Reassigns the time slot of the course to the given time.
+   *
+   * @throws IllegalArgumentException if the time is empty, modifies field otherwise.
+   */
   public void reassignTime(String newTime) {
+    if (newTime.isEmpty()) {
+      throw new IllegalArgumentException("time cannot be empty");
+    }
     this.courseTimeSlot = newTime;
   }
 
-
+  /**
+   * Sets the enrollment count of the course to the given count.
+   *
+   * @throws IllegalArgumentException if the count is negative, modifies field otherwise.
+   */
   public void setEnrolledStudentCount(int count) {
+    if (count < 0) {
+      throw new IllegalArgumentException("count cannot be negative");
+    }
     this.enrolledStudentCount = count;
   }
 
 
   public boolean isCourseFull() {
-    return enrollmentCapacity > enrolledStudentCount;
+    return enrollmentCapacity <= enrolledStudentCount;
   }
 
   @Serial
