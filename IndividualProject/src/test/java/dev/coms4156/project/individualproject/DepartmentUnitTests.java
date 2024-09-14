@@ -23,6 +23,9 @@ public class DepartmentUnitTests {
     testCourse2 = new Course("Jane Lim", "451 CSB", "17:40-18:55", 40);
   }
 
+  /**
+   * Sets up and resets the Department instance before running each test.
+   */
   @BeforeEach
   public void setupDepartmentForTesting() {
     testCourses = new HashMap<>();

@@ -130,7 +130,7 @@ public class Course implements Serializable {
 
 
   public boolean isCourseFull() {
-    return enrollmentCapacity < enrolledStudentCount;
+    return enrollmentCapacity <= enrolledStudentCount;
   }
 
   @Serial
