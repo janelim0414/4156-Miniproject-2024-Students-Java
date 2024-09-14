@@ -1,0 +1,21 @@
+Bugs in Course.java:
+- enrollStudent() always returned false after updating enrollment count.
+- dropStudent() always returned false after updating enrollment count.
+- getCourseLocation() returned instructorName.
+- getInstructorName() returned courseLocation.
+- reassignInstructor(), reassignLocation(), reassignTime(), setEnrolledStudentCount() all did not check for the case where input is invalid.
+- isCourseFull() returned false when full, true when not full.
+Bugs in Department.java:
+- getNumberOfMajors() returned negative of numberOfMajors.
+- getDepartmentChair() returned the string "this.departmentChair".
+- addPersonToMajor() had confusing name -- did not properly reflect its job of increasing the number of majors; no person is involved.
+- dropPersonFromMajor() had confusing name -- did not properly reflect its job of decreasing the number of majors; no person is involved.
+- createCourse() did not check for the case where inputs are invalid.
+- toString() returned the string "result.toString()".
+Bugs in RouteController.java:
+- retrieveDepartment() returned response of OK when department is not found and returned response of NOT FOUND when it successfully retrieved the department.
+- retrieveCourse() returned response of FORBIDDEN when it successfully retrieved course.
+- isCourseFull() did not check for case when department is not found.
+- getMajorCtFromDept() returned negative of major count and response when department is not found was FORBIDDEN.
+- identifyDeptChair(), findCourseInstructor(), findCourseInstructor(), dropStudent(), setEnrollmentCount(), changeCourseTime(), changeCourseTeacher(), changeCourseLocation() did not check for case when department is not found.
+- handleException() returned response of OK.
