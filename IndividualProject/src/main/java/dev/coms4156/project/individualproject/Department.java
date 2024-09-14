@@ -59,14 +59,14 @@ public class Department implements Serializable {
   /**
    * Increases the number of majors in the department by one.
    */
-  public void addPersonToMajor() {
+  public void increaseNumberOfMajors() {
     numberOfMajors++;
   }
 
   /**
    * Decreases the number of majors in the department by one if it's greater than zero.
    */
-  public void dropPersonFromMajor() {
+  public void decreaseNumberOfMajors() {
     numberOfMajors--;
   }
 

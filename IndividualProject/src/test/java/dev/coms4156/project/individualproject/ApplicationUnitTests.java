@@ -17,6 +17,9 @@ import org.springframework.test.context.ContextConfiguration;
 @ContextConfiguration
 public class ApplicationUnitTests {
 
+  /**
+   * Sets up expected string.
+   */
   @BeforeAll
   public static void setupApplicationForTesting() {
     expected = """
@@ -168,8 +171,6 @@ public class ApplicationUnitTests {
 
   @Test
   public void resetDataFileTest() {
-    IndividualProjectApplication application = new IndividualProjectApplication();
-    MyFileDatabase newDatabase = new MyFileDatabase(1, "./data.txt");
     HashMap<String, Course> courses = new HashMap<>();
     Course testCourse1 = new Course("Griffin Newbold", "417 IAB", "11:40-12:55", 250);
     Course testCourse2 = new Course("Jane Lim", "451 CSB", "17:40-18:55", 40);
@@ -178,7 +179,9 @@ public class ApplicationUnitTests {
     Department department = new Department("COMS", courses, "Jae Lee", 3);
     HashMap<String, Department> mapping = new HashMap<>();
     mapping.put("COMS", department);
+    MyFileDatabase newDatabase = new MyFileDatabase(1, "./data.txt");
     newDatabase.setMapping(mapping);
+    IndividualProjectApplication application = new IndividualProjectApplication();
     IndividualProjectApplication.overrideDatabase(newDatabase);
     application.resetDataFile();
     assertEquals(IndividualProjectApplication.myFileDatabase.toString(), expected);

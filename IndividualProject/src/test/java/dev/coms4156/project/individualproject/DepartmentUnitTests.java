@@ -54,13 +54,13 @@ public class DepartmentUnitTests {
 
   @Test
   public void addPersonToMajorTest() {
-    testDepartment.addPersonToMajor();
+    testDepartment.increaseNumberOfMajors();
     assertEquals(4, testDepartment.getNumberOfMajors());
   }
 
   @Test
   public void dropPersonFromMajorTest() {
-    testDepartment.dropPersonFromMajor();
+    testDepartment.decreaseNumberOfMajors();
     assertEquals(2, testDepartment.getNumberOfMajors());
   }
 
